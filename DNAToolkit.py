@@ -39,13 +39,15 @@ def reverse_complement(dna_seq: str) -> str:
     return dna_seq.translate(mapping)[::-1]
 
 
-def gc_content(seq: str) -> int:
+def gc_content(seq: str) -> float:
     """GC Content in a DNA/RNA sequence"""
 
-    return round((seq.count('G') + seq.count('C')) / len(seq) * 100)
+    return round(((seq.count('G') + seq.count('C')) / len(seq) * 100), 3)
 
 
-def gc_content_subsec(seq: str, k=10):
+def gc_content_subsec(seq: str, k=10) -> list:
+    """GC Content in a DNA/RNA sub-sequence length k"""
+
     res = []
     for i in range(0, len(seq) - k + 1, k):
         subseq = seq[i:i + k]
