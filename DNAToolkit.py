@@ -37,3 +37,17 @@ def reverse_complement(dna_seq: str) -> str:
 
     mapping = str.maketrans('ATCG', 'TAGC')
     return dna_seq.translate(mapping)[::-1]
+
+
+def gc_content(seq: str) -> int:
+    """GC Content in a DNA/RNA sequence"""
+
+    return round((seq.count('G') + seq.count('C')) / len(seq) * 100)
+
+
+def gc_content_subsec(seq: str, k=10):
+    res = []
+    for i in range(0, len(seq) - k + 1, k):
+        subseq = seq[i:i + k]
+        res.append(gc_content(subseq))
+    return res
